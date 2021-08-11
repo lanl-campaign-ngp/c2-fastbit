@@ -36,3 +36,4 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_MACOSX_RPATH 1)
 
 add_subdirectory(src)
+add_subdirectory(examples)
