@@ -102,6 +102,9 @@ target_include_directories(fastbit PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>)
 set_target_properties(fastbit PROPERTIES VERSION ${FASTBIT_VERSION}
         SOVERSION ${FASTBIT_VERSION_MAJOR})
+if(FASTBIT_USE_CXX_ATOMIC)
+    target_compile_definitions(fastbit PUBLIC -DHAVE_ATOMIC_TEMPLATE)
+endif()
 # we checked for "-pthread" earlier (before add_library). "-pthread" should
 # take care of all thread related options.
 # but if we don't have it, fall back to -D_REENTRANT

@@ -11,6 +11,7 @@ set(BUILD_SHARED_LIBS "OFF" CACHE BOOL "Build a shared library")
 # cmake 3.0 and before.
 set(FASTBIT_CXX_STANDARD "11" CACHE STRING "C++ std to probe")
 set(FASTBIT_CXX_STANDARD_REQUIRED "OFF" CACHE BOOL "C++ std must be met")
+set(FASTBIT_USE_CXX_ATOMIC "ON" CACHE BOOL "Use C++ <atomic>")
 mark_as_advanced(FASTBIT_CXX_STANDARD FASTBIT_CXX_STANDARD_REQUIRED)
 set_property(CACHE FASTBIT_CXX_STANDARD PROPERTY STRINGS "98" "11")
 include(CheckCXXCompilerFlag)
