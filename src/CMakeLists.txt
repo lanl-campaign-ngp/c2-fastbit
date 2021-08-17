@@ -91,25 +91,26 @@ set(FASTBIT_VERSION "${fastbit-vers}.${FASTBIT_VERSION_PATCH}")
 # create the library target (user can specify shared vs.
 # static using BUILD_SHARED_LIBS).
 add_library(fastbit ${fastbit-srcs})
-target_compile_definitions(fastbit PUBLIC -DWITHOUT_FASTBIT_CONFIG_H)
+target_compile_definitions(fastbit PUBLIC "WITHOUT_FASTBIT_CONFIG_H")
 if(THREADS_HAVE_PTHREAD_ARG)
     target_compile_options(fastbit PUBLIC "-pthread")
 endif()
 if(CMAKE_THREAD_LIBS_INIT)
     target_link_libraries (fastbit "${CMAKE_THREAD_LIBS_INIT}")
 endif()
-target_include_directories(fastbit PRIVATE
+target_include_directories (fastbit PUBLIC $<INSTALL_INTERFACE:include>)
+target_include_directories(fastbit BEFORE PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>)
 set_target_properties(fastbit PROPERTIES VERSION ${FASTBIT_VERSION}
         SOVERSION ${FASTBIT_VERSION_MAJOR})
 if(FASTBIT_USE_CXX_ATOMIC)
-    target_compile_definitions(fastbit PUBLIC -DHAVE_ATOMIC_TEMPLATE)
+    target_compile_definitions(fastbit PUBLIC "HAVE_ATOMIC_TEMPLATE")
 endif()
 # we checked for "-pthread" earlier (before add_library). "-pthread" should
 # take care of all thread related options.
 # but if we don't have it, fall back to -D_REENTRANT
 if(NOT THREADS_HAVE_PTHREAD_ARG)
-    target_compile_definitions(fastbit PUBLIC -D_REENTRANT)
+    target_compile_definitions(fastbit PUBLIC "_REENTRANT")
 endif()
 
 # where to install files for "find_package"
