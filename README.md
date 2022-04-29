@@ -63,7 +63,7 @@ Type 'g' to generate build files and exit cmake. If 'g' is not available, type '
 make
 ```
 
-**Note**: depending on the capabilities of the build machine, the make process may take a while to complete. Check our [github ci runs](actions/workflows/ci.yml) for examples of FastBit builds.
+**Note**: depending on the capabilities of the build machine, the make process may take a while to complete. Check our [github ci runs](https://github.com/lanl-future-campaign/c2-fastbit/actions/workflows/ci.yml) for examples of FastBit builds.
 
 Example `ldd` output of `libfastbit.so` on Ubuntu 20.04.4:
 
