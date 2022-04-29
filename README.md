@@ -29,13 +29,13 @@ FastBit is written in C++ and can be compiled and run both on Mac and on Linux p
 
 # Software requirements
 
-Compiling FastBit requires gcc/g++, cmake, and make. On Ubuntu, you may use the following commands to prepare the programming environment for FastBit.
+Compiling FastBit requires g++, cmake, and make. On Ubuntu, you may use the following commands to prepare the programming environment for FastBit.
 
 ```bash
-sudo apt-get install gcc g++ make cmake cmake-curses-gui
+sudo apt-get install g++ make cmake cmake-curses-gui
 ```
 
-For Ubuntu 20.04.4, this will install gcc/g++ 9.4.0, cmake 3.16.3, and make 4.2.1.
+For Ubuntu 20.04.4, this will install g++ 9.4.0, cmake 3.16.3, and make 4.2.1.
 
 # Building
 
@@ -81,4 +81,22 @@ ldd libfastbit.so
 
 # LLVM Clang, g++-11 and beyond
 
-Compiling will fail if FastBit is compiled by a recent LLVM clang compiler or a g++-11 or later compiler. Errors such as `error: ordered comparison between pointer and zero ('unsigned short *' and 'int')` will be reported and will conclude the build process. Use a non-recent g++ compiler instead. On Mac, gcc/g++ may be installed via brew using `brew install gcc`. To install a specific version of gcc/g++, use `brew install gcc@x`. FastBit will compile with gcc-6, gcc-7, gcc-8, gcc-9, and gcc-10 (all available under macOS Monterey). On Ubuntu, specific versions of g++ can be installed through `sudo apt-get install g++-x`. g++-6 is unavailable on Ubuntu 20.04.4 whereas g++-7 to g++-10 are all available. Ubuntu 20.04.4 installs g++-9 by default.
+Compilation will fail when FastBit is compiled by a recent LLVM clang compiler or a g++-11 or later compiler. Errors such as `error: ordered comparison between pointer and zero ('unsigned short *' and 'int')` will be reported and will conclude the build process. Use a non-recent g++ compiler instead. On Mac, g++ may be installed via brew using `brew install gcc` (this will also install g++). To install a specific version of g++, use `brew install gcc@x`. FastBit will compile with gcc-6, gcc-7, gcc-8, gcc-9, and gcc-10 (all available under macOS Monterey). On Ubuntu, specific versions of g++ can be installed through `sudo apt-get install g++-x`. g++-6 is unavailable on Ubuntu 20.04.4 whereas g++-7 to g++-10 are all available. Ubuntu 20.04.4 installs g++-9 by default.
+
+# Crosscompiling
+
+One benefit of switching to cmake is an easier process for crosscompiling. In cases where an x86_64 Ubuntu host is used for crosscompiling an aarch64 target, use `sudo apt-get install g++-aarch64-linux-gnu` to obtain the right g++ distribution and do the following:
+
+```bash
+git clone https://github.com/lanl-future-campaign/c2-fastbit.git
+cd c2-fastbit
+mkdir build
+cd build
+CC=/usr/bin/aarch64-linux-gnu-gcc CXX=/usr/bin/aarch64-linux-gnu-g++ ccmake \
+-DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+-DBUILD_SHARED_LIBS=ON \
+..
+```
+
+Do the same steps as described above and after `make` we will get an aarch64 libfastbit.so target.
