@@ -33,7 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         build_type: [RelWithDebInfo]
-        compiler: [gcc-9, gcc-10, gcc-11]
+        compiler: [gcc-7, gcc-8, gcc-9, gcc-10]
         os: [ubuntu-latest]
         # can add include / exclude below to refine the matrix
 
