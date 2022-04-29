@@ -25,7 +25,7 @@ XXXX XX            XX XX          XX XXXXXXXXXX   XX       XX XX            XXXX
 
 # Platform
 
-FastBit is written in c++ and can be compiled and run both on Mac and on Linux platforms. C++11 (atomics) is not required to compile the code, but will be used if the compiler supports it. C++14 or later features are not used.
+FastBit is written in c++ and can be compiled and run both on Mac and on Linux platforms. `c++11` (atomics) is not required to compile the code, but will be used if the compiler supports it. `c++14` or later features are not used.
 
 # Software requirements
 
@@ -81,4 +81,4 @@ ldd libfastbit.so
 
 # LLVM Clang, g++-11 and beyond
 
-Compiling will fail if FastBit is compiled by a recent LLVM clang compiler or a g++-11 or later compiler. Errors such as `error: ordered comparison between pointer and zero ('unsigned short *' and 'int')` will be reported and will fail the build process. Use a non-recent gcc/g++ compiler instead. On Mac, gcc/g++ may be installed via brew using `brew install gcc`. To install a specific version of gcc, use `brew install gcc@x`. FastBit will compile with `gcc-6`, `gcc-7`, `gcc-8`, `gcc-9`, and `gcc-10`.
+Compiling will fail if FastBit is compiled by a recent LLVM clang compiler or a g++-11 or later compiler. Errors such as `error: ordered comparison between pointer and zero ('unsigned short *' and 'int')` will be reported and will conclude the build process. Use a non-recent gcc/g++ compiler instead. On Mac, gcc/g++ may be installed via brew using `brew install gcc`. To install a specific version of gcc, use `brew install gcc@x`. FastBit will compile with `gcc-6`, `gcc-7`, `gcc-8`, `gcc-9`, and `gcc-10` (all available under macOS Monterey). On Ubuntu, specific versions of gcc can be installed through `sudo apt-get install gcc-x`. `gcc-6` is unavailable on Ubuntu 20.04.4 whereas `gcc-7` - `gcc-10` are all available. Ubuntu 20.04.4 installs `gcc-9` by default.
