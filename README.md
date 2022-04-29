@@ -34,7 +34,7 @@ Compiling FastBit requires gcc/g++, cmake, and make. On Ubuntu, you may use the 
 sudo apt-get install gcc g++ make cmake cmake-curses-gui
 ```
 
-For Ubuntu 20.04.1, this will install gcc/g++ 9.4.0, cmake 3.16.3, and make 4.2.1.
+For Ubuntu 20.04.4, this will install gcc/g++ 9.4.0, cmake 3.16.3, and make 4.2.1.
 
 # Building
 
@@ -63,7 +63,20 @@ Type 'g' to generate build files and exit cmake. If 'g' is not available, type '
 make
 ```
 
-**Note**: depending on the capabilities of the machine, the make process may take a while to complete.
+**Note**: depending on the capabilities of the build machine, the make process may take a while to complete. Check our [github ci runs](actions/workflows/ci.yml) for examples of FastBit builds.
+
+Example `ldd` output of `libfastbit.so` on Ubuntu 20.04.4:
+
+```bash
+ldd libfastbit.so
+	linux-vdso.so.1 (0x00007ffce23b8000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fe53407b000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe533f2c000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fe533f11000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fe533eee000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe533cfc000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fe535b47000)
+```
 
 # LLVM Clang, g++-11 and beyond
 
