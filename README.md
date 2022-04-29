@@ -1,5 +1,6 @@
 **Lawrence Berkeley National Laboratory's award-winning, high-performance, multidimensional data index engine**
 
+[![CI](https://github.com/lanl-future-campaign/c2-fastbit/actions/workflows/ci.yml/badge.svg)](https://github.com/lanl-future-campaign/c2-fastbit/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-New%20BSD-blue.svg)](COPYING)
 
 FastBit 2.0.3
