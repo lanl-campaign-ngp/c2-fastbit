@@ -24,11 +24,11 @@ XXXX XX            XX XX          XX XXXXXXXXXX   XX       XX XX            XXXX
 
 # Platform
 
-FastBit is written in C++ and can be compiled and run both on Mac and on Linux platforms. C++11 (atomics) is not required to compile the code, but will be used if the compiler supports it. C++14 or later features are not used.
+FastBit is written in c++ and can be compiled and run both on Mac and on Linux platforms. C++11 (atomics) is not required to compile the code, but will be used if the compiler supports it. C++14 or later features are not used.
 
 # Software requirements
 
-Compiling FastBit requires a recent gcc/g++, cmake, and make. On Ubuntu, you may use the following commands to prepare the programming environment for FastBit.
+Compiling FastBit requires gcc/g++, cmake, and make. On Ubuntu, you may use the following commands to prepare the programming environment for FastBit.
 
 ```bash
 sudo apt-get install gcc g++ make cmake cmake-curses-gui
@@ -65,6 +65,6 @@ make
 
 **Note**: depending on the capabilities of the machine, the make process may take a while to complete.
 
-# LLVM Clang
+# LLVM Clang, g++-11 and beyond
 
-Compiling will fail if FastBit is compiled by a recent LLVM clang compiler. Errors such as `error: ordered comparison between pointer and zero ('unsigned short *' and 'int')` will be reported and terminates the build process. Use a gcc/g++ compiler instead. On Mac, gcc/g++ may be installed via brew using `brew install gcc`.
+Compiling will fail if FastBit is compiled by a recent LLVM clang compiler or a g++-11 or later compiler. Errors such as `error: ordered comparison between pointer and zero ('unsigned short *' and 'int')` will be reported and will fail the build process. Use a non-recent gcc/g++ compiler instead. On Mac, gcc/g++ may be installed via brew using `brew install gcc`. To install a specific version of gcc, use `brew install gcc@x`. FastBit will compile with `gcc-6`, `gcc-7`, `gcc-8`, `gcc-9`, and `gcc-10`.
