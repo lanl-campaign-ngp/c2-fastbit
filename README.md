@@ -1,4 +1,4 @@
-**Lawrence Berkeley National Laboratory's high-performance, multidimensional data index engine**
+**Lawrence Berkeley National Laboratory's award-winning, high-performance, multidimensional data index engine**
 
 [![License](https://img.shields.io/badge/license-New%20BSD-blue.svg)](COPYING)
 
@@ -20,7 +20,7 @@ XX    XX           XX XX          XX XX           XX       XX XX          XX    
 XXXX XX            XX XX          XX XXXXXXXXXX   XX       XX XX            XXXXXX
 ```
 
-This is LANL's re-distribution of Lawrence Berkeley National Laboratory's FastBit 2.0.3 codebase with the build system switched from GNU autotools to cmake. The original FastBit code is available at [code.lbl.gov](https://code.lbl.gov/projects/fastbit/). Visit [sdm.lbl.gov](https://sdm.lbl.gov/fastbit/) for more information regarding the technology, use cases, and documentations of the software. FastBit is open-source software. The original codebase uses a GNU autotools based build system. This re-distribution allows people to use cmake to more easily build the software especially for crosscompiling purposes.
+**This is LANL's re-distribution of Lawrence Berkeley National Laboratory's FastBit 2.0.3 codebase with the build system switched from GNU autotools to cmake.** The original FastBit code is available at [code.lbl.gov](https://code.lbl.gov/projects/fastbit/). Visit [sdm.lbl.gov](https://sdm.lbl.gov/fastbit/) for more information regarding the technology, use cases, and documentations of the software. FastBit is open-source software. The original codebase uses a GNU autotools based build system. This re-distribution allows people to use cmake to more easily build the software especially for crosscompiling.
 
 # Platform
 
