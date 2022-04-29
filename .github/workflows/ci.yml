@@ -11,10 +11,10 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 # job(s) to run when workflow is triggered.
 jobs:
