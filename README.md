@@ -59,6 +59,7 @@ BUILD_SHARED_LIBS               *ON
 CMAKE_BUILD_TYPE                *Release
 CMAKE_EXE_LINKER_FLAGS          *
 CMAKE_INSTALL_PREFIX            */tmp/usr/local
+CMAKE_SKIP_RPATH                *OFF
 FASTBIT_USE_CXX_ATOMIC          *ON
 ```
 
@@ -102,9 +103,10 @@ CC=/usr/bin/aarch64-linux-gnu-gcc CXX=/usr/bin/aarch64-linux-gnu-g++ ccmake \
 -DCMAKE_SYSTEM_NAME=Linux -DCMAKE_SYSTEM_PROCESSOR=aarch64 \
 -DCMAKE_INSTALL_PREFIX=<installdir> \
 -DCMAKE_BUILD_TYPE=Release \
+-DCMAKE_SKIP_RPATH=ON \
 -DCMAKE_EXE_LINKER_FLAGS=-static \
 -DBUILD_SHARED_LIBS=OFF \
 ..
 ```
 
-Do the same steps as described above and after `make` we will get an aarch64 libfastbit.so target. Note that when crosscompiling, we recommend to set `BUILD_SHARED_LIBS` to "OFF" and `CMAKE_EXE_LINKER_FLAGS` to "-static" to avoid issues where the glibc version of the host machine is different from that of the target. Glibc versions can be checked through `ldd --version`. For non-Ubuntu hosts, one may obtain g++ from [ARM GNU toolchains](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain). The latest version is based on g++-11.2.
+Do the same steps as described above and after `make` we will get an aarch64 libfastbit.so target. Note that when crosscompiling, we recommend to set `BUILD_SHARED_LIBS` to "OFF" and `CMAKE_EXE_LINKER_FLAGS` to "-static" to avoid issues where the glibc version of the host machine is different from that of the target. Glibc versions can be checked through `ldd --version`. Due to static linking, we also set `CMAKE_SKIP_RPATH` to `ON`. For non-Ubuntu hosts, one may obtain g++ from [ARM GNU toolchains](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain). The latest version is based on g++-11.2.
