@@ -116,5 +116,5 @@ jobs:
       # build project
       #
       - name: build project
-        run: date && cd b && make && date
+        run: date && cd b && make VERBOSE=1 && date
 
