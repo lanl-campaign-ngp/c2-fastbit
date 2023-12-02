@@ -71,8 +71,6 @@ set(fastbit-srcs array_t.cpp
         whereLexer.cc
         whereParser.cc)
 
-set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
-set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
 # library version set here (e.g. for shared libs).  we allow our container
