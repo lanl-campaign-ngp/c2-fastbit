@@ -103,12 +103,15 @@ set_target_properties(fastbit PROPERTIES VERSION ${FASTBIT_VERSION}
 set(fastbit-pkg-loc "share/cmake/fastbit")
 include(CMakePackageConfigHelpers)
 # installation stuff (packaging and install commands)
-write_basic_package_version_file("fastbit-config-version.cmake"
+write_basic_package_version_file(
+        ${CMAKE_CURRENT_BINARY_DIR}/fastbit-config-version.cmake
         VERSION ${FASTBIT_VERSION}
         COMPATIBILITY AnyNewerVersion)
 
 # generate our config file for find_package()
-configure_file(fastbit-config.cmake.in fastbit-config.cmake @ONLY)
+configure_package_config_file(fastbit-config.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/fastbit-config.cmake
+        INSTALL_DESTINATION ${fastbit-pkg-loc})
 
 # "make install" rules
 install(TARGETS fastbit EXPORT fastbit-targets
