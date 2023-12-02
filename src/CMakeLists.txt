@@ -104,13 +104,13 @@ set(fastbit-pkg-loc "share/cmake/fastbit")
 include(CMakePackageConfigHelpers)
 # installation stuff (packaging and install commands)
 write_basic_package_version_file(
-        ${CMAKE_CURRENT_BINARY_DIR}/fastbit-config-version.cmake
+        "${CMAKE_CURRENT_BINARY_DIR}/fastbit-config-version.cmake"
         VERSION ${FASTBIT_VERSION}
         COMPATIBILITY AnyNewerVersion)
 
 # generate our config file for find_package()
 configure_package_config_file(fastbit-config.cmake.in
-        ${CMAKE_CURRENT_BINARY_DIR}/fastbit-config.cmake
+        "${CMAKE_CURRENT_BINARY_DIR}/fastbit-config.cmake"
         INSTALL_DESTINATION ${fastbit-pkg-loc})
 
 # "make install" rules
