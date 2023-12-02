@@ -34,7 +34,7 @@ jobs:
       matrix:
         build_type: [RelWithDebInfo]
         compiler: [gcc-7, gcc-8, gcc-9, gcc-10]
-        os: [ubuntu-latest]
+        os: [ubuntu-20.04]
         # can add include / exclude below to refine the matrix
 
     # what os to run on (reference matrix above for this)
