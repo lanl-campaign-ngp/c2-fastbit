@@ -73,15 +73,18 @@ set(fastbit-srcs array_t.cpp
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+# cmake 3.1 and newer define a Threads::Threads imported target that we
+# should switch too when we are ready to require 3.1 or better.
+# cmake 3.1 was released late 2014.
 find_package(Threads REQUIRED)
 
 # library version set here (e.g. for shared libs).  we allow our container
 # to choose the version, or it can just take the default.
-if (NOT DEFINED FASTBIT_VERSION_MAJOR)
+if(NOT DEFINED FASTBIT_VERSION_MAJOR)
     set(FASTBIT_VERSION_MAJOR 2)
     set(FASTBIT_VERSION_MINOR 0)
     set(FASTBIT_VERSION_PATCH 3)
-endif ()
+endif()
 set(fastbit-vers "${FASTBIT_VERSION_MAJOR}.${FASTBIT_VERSION_MINOR}")
 set(FASTBIT_VERSION "${fastbit-vers}.${FASTBIT_VERSION_PATCH}")
 
@@ -89,15 +92,26 @@ set(FASTBIT_VERSION "${fastbit-vers}.${FASTBIT_VERSION_PATCH}")
 # static using BUILD_SHARED_LIBS).
 add_library(fastbit ${fastbit-srcs})
 target_compile_definitions(fastbit PUBLIC "WITHOUT_FASTBIT_CONFIG_H")
-if (FASTBIT_USE_CXX_ATOMIC)
-    target_compile_definitions(fastbit PUBLIC "HAVE_ATOMIC_TEMPLATE")
-endif ()
-target_include_directories(fastbit PUBLIC $<INSTALL_INTERFACE:include>)
+if(THREADS_HAVE_PTHREAD_ARG)
+    target_compile_options(fastbit PUBLIC "-pthread")
+endif()
+if(CMAKE_THREAD_LIBS_INIT)
+    target_link_libraries (fastbit "${CMAKE_THREAD_LIBS_INIT}")
+endif()
+target_include_directories (fastbit PUBLIC $<INSTALL_INTERFACE:include>)
 target_include_directories(fastbit BEFORE PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>)
-target_link_libraries(fastbit PUBLIC Threads::Threads)
 set_target_properties(fastbit PROPERTIES VERSION ${FASTBIT_VERSION}
         SOVERSION ${FASTBIT_VERSION_MAJOR})
+if(FASTBIT_USE_CXX_ATOMIC)
+    target_compile_definitions(fastbit PUBLIC "HAVE_ATOMIC_TEMPLATE")
+endif()
+# we checked for "-pthread" earlier (before add_library). "-pthread" should
+# take care of all thread related options.
+# but if we don't have it, fall back to -D_REENTRANT
+if(NOT THREADS_HAVE_PTHREAD_ARG)
+    target_compile_definitions(fastbit PUBLIC "_REENTRANT")
+endif()
 
 # where to install files for "find_package"
 set(fastbit-pkg-loc "share/cmake/fastbit")
